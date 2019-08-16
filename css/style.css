@@ -53,13 +53,14 @@ nav li a:hover{
 .social ul{
   padding: 0;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
 }
 
 .social img{
-  width: 3em;
+  width: 2em;
   padding: 0.5em;
 }
 
