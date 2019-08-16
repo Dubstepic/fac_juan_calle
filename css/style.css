@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: linear-gradient(to right,
+    rgba(244,246,250,1),
+    rgba(239,241,247,1))
+}
+
+nav {
+  position: fixed;
+  width: 20%;
+  height: 100vh;
+  background: linear-gradient(to right,
+    rgba(249,107,142,1),
+    rgba(218,103,230,1),
+    rgba(130,125,253,1));
+}
+
+nav li {
+  list-style: none;
+  /* padding: 6vh; */
+}
+
+nav li a {
+  color: white;
+  font-weight: 700;
+  opacity: 0.6;
+  text-decoration: none;
+  transition: 0.5s;
+}
+
+nav li a:hover{
+  opacity: 1;
+}
+
+.navBar {
+  padding: 0;
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  text-align: center;
+}
+.social{
+  padding: 0;
+  min-height: 40vh;
+  display: flex;
+  justify-content: center;
+  align-content: space-between;
+  text-align: center;
+}
+.social ul{
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.social img{
+  width: 3em;
+  padding: 0.5em;
+}
+
+.main{
+  display: grid;
+  grid-template-columns: 20% auto;
+}
+
+.home,.aboutMe, .whyFC,
+.whatIleaned, .portfolio,
+.gallery{
+  grid-column-start: 2;
+  height: 100vh;
+}
+
+.home{
+
+  background-color: #4A4E4D;
+}
+
+.aboutMe{
+  background-color: #3F9AA8;
+}
+
+.whyFC{
+  background-color: #F6CD61;
+}
+
+.whatIleaned{
+  background-color: #45A5AB;
+}
+
+.portfolio{
+  background-color: #F18870;
+}
+
+.gallery{
+  background-color: #A7DB66;
+}
