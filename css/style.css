@@ -1,7 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
-html{
+
+/* GENERAL STYLING */
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
   scroll-behavior:smooth;
 }
+
 body {
   font-family: 'Nunito', sans-serif;
   background: linear-gradient(to right,
@@ -9,9 +15,12 @@ body {
       rgba(239, 241, 247, 1));
 }
 
+/* NAVIGATION AND SOCIAL SIDEBAR */
 nav {
   position: fixed;
-  width: 20%;
+  width: 20vw;
+  z-index: 1;
+  overflow-x: hidden;
   background: linear-gradient(to right,
       rgba(249, 107, 142, 1),
       rgba(218, 103, 230, 1),
@@ -43,6 +52,7 @@ nav li a:hover {
   text-align: center;
 
 }
+
 .navBar {
   min-height: 60vh;
 }
@@ -52,7 +62,7 @@ nav li a:hover {
 }
 
 .social img {
-  width: 2em;
+  width: 3em;
   padding: 0.5em;
 }
 
@@ -60,11 +70,37 @@ nav li a:hover {
   opacity: 1;
 }
 
+/* MAIN CONTENT */
+/* Creats grid of 2 columns and *n implicit rows */
 main {
   display: grid;
   grid-template-columns: 20% auto;
+  transition: grid 1s ease-in-out;
 }
 
+/* BUTTONS */
+.buttons{
+  position: relative;
+  border: 2px solid #fff;
+  background-color: transparent;
+  color: #fff;
+  cursor: pointer;
+  padding: 13px 15px;
+  border-radius: 50%;
+  outline: none;
+}
+
+.buttons:hover {
+  background-color: #fff;
+  color: #333;
+  transition: 0.3s ease-in-out;
+}
+
+.buttons.invisible{
+  display: none;
+}
+
+/* SECTIONS */
 #home, #aboutMe, #whyFC,
 #whatIlearned, #portfolio,
 #gallery {
@@ -96,6 +132,42 @@ main {
   background-color: #A7DB66;
 }
 
-@media query {
+/* SMALLER SCREENS */
+@media (max-width:640px) {
+  /* Adjusting the grid layout to have only one column */
+  main{
+    grid-template-columns: 1fr;
+  }
+  /* Make the sidebar dissappear with a nice transition effect */
+  nav{
+    width: 0px;
+    transition: all 1s ease-in-out;
+  }
+  /* Positioning all the sections in the one-column grid */
+  #home, #aboutMe, #whyFC,
+  #whatIlearned, #portfolio,
+  #gallery {
+    grid-column-start: 1;
+  }
 
+  /* Adding the sidebar buttons to the layout and positioning them */
+  .buttons#hamburger, .buttons#close{
+    display: block;
+    position: fixed;
+    top: 2vh;
+    left: 2vw;
+    z-index: 2;
+    transition: 1s ease-in-out;
+  }
+
+  /* Revealing the hamburger button and placing it on top of the sidebar */
+  .buttons#hamburger {
+    opacity: 1;
+    z-index: 3;
+  }
+
+  /* Making the close button invisible */
+  .buttons#close {
+    opacity: 0;
+  }
 }
