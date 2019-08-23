@@ -1,39 +1,63 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
-html{
-  scroll-behavior:smooth;
-}
-body {
-  font-family: 'Nunito', sans-serif;
-  background: linear-gradient(to right,
+
+                      /* ------ GENERAL STYLING ------ */
+/* CSS variables */
+:root{
+  --body-gradient: linear-gradient(to right,
       rgba(244, 246, 250, 1),
       rgba(239, 241, 247, 1));
-}
-
-nav {
-  position: fixed;
-  width: 20%;
-  background: linear-gradient(to right,
+  --nav-gradient: linear-gradient(to right,
       rgba(249, 107, 142, 1),
       rgba(218, 103, 230, 1),
       rgba(130, 125, 253, 1));
+  --caption-background: rgba(255, 255, 255, 0.8);
+  --white: #FFFFFF;
+  --dark-grey: #373D46;
+  --dark-blue-grey: #231F48;
 }
 
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior:smooth;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--body-gradient);
+}
+
+                      /* ------ NAVIGATION SIDEBAR AND BUTTONS ------ */
+/* The sidebar will occupy the first grid column (see * --- MAIN CONTENT --- *), although it wont be part of the grid itself as I'm giving it a fixed position, so it stays visible at all the times. */
+nav {
+  position: fixed;
+  width: 20vw;
+  z-index: 1;
+  overflow-x: hidden;
+  background: var(--nav-gradient);
+}
+
+/* Removing the bullets of the list items in the sidebar */
 nav li {
   list-style: none;
 }
 
+/* Styling the links */
 nav li a {
-  color: white;
+  color: var(--white);
   font-weight: 700;
   opacity: 0.6;
   text-decoration: none;
   transition: 0.5s;
 }
 
+/* What to do when the links are hover */
 nav li a:hover {
   opacity: 1;
 }
 
+/* Styling all the elements inside the nav bar, making them display vertically*/
 .navBar, .social, .social ul {
   padding: 0;
   display: flex;
@@ -41,30 +65,83 @@ nav li a:hover {
   align-content: space-around;
   justify-content: space-around;
   text-align: center;
-
 }
+
+/* Make the bit of the sidebar containing the menu span 60% */
 .navBar {
   min-height: 60vh;
 }
 
+/* Give the remaining 40% available to the social links */
 .social {
   min-height: 40vh;
 }
 
+/* Styling the SVG images of the links */
 .social img {
-  width: 2em;
+  width: 3em;
   padding: 0.5em;
 }
 
+/* What to do when javascript adds this class to a specific link */
 .active{
   opacity: 1;
 }
 
+/* BUTTONS */
+/* Giving them all a bit of style */
+.buttons button{
+  position: relative;
+  border: 2px solid #fff;
+  background-color: transparent;
+  color: var(--white);
+  cursor: pointer;
+  padding: 13px 15px;
+  text-shadow: 5px 10px var(--dark-grey);
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  outline: none;
+}
+
+/* What to do when they are hovered */
+.buttons button:hover {
+  background-color: #fff;
+  color: var(--dark-grey);
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 1);
+  transition: 0.3s ease-in-out;
+}
+
+/* Javascript will change this class making them visible or invisible */
+.buttons button.invisible{
+  display: none;
+}
+
+/* Buttons of the image caroussel */
+.buttons button#next {
+  position: absolute;
+  top: 50vh;
+  right: 1vw;
+}
+.buttons button#previous {
+  position: absolute;
+  top: 50vh;
+  left: 1vw;
+}
+.buttons button#play, .buttons button#pause {
+  position: absolute;
+  top: 90vh;
+  left: 74vw;
+}
+
+                      /* ------ MAIN CONTENT ------ */
+/* Creats grid of 2 columns and *n implicit rows. The sidebar is placed out of the grid with display:fix, occupying the width of the first grid column */
 main {
   display: grid;
   grid-template-columns: 20% auto;
 }
 
+                      /* ------ SECTIONS ------ */
+/* Making them all start at the second column of the grid (the first one is empty but occupied by the sidebar, and also making them occupy the whole height of the viewport) */
 #home, #aboutMe, #whyFC,
 #whatIlearned, #portfolio,
 #gallery {
@@ -72,30 +149,182 @@ main {
   height: 100vh;
 }
 
+/* HOME */
 #home {
-  background-color: #4A4E4D;
+  background: url('../assets/images/bgShapes.png') no-repeat center center/cover;
 }
 
+/* ABOUT ME */
 #aboutMe {
-  background-color: #3F9AA8;
+  background: url('../assets/images/bgShapes.png') no-repeat center center/cover;
 }
 
+/* WHY FOUNDERS AND CODERS */
 #whyFC {
   background-color: #F6CD61;
 }
 
+/* WHAT I'VE LEARNED */
 #whatIlearned {
   background-color: #45A5AB;
 }
 
+/* PORTFOLIO */
 #portfolio {
   background-color: #F18870;
 }
 
+/* GALLERY */
 #gallery {
   background-color: #A7DB66;
 }
 
-@media query {
+/* Image Caroussel */
+.caroussel {
+  /* Position it relative to the gallery section */
+  position: relative;
+  /* Avoiding horizontal scrolling */
+  overflow: hidden;
+  /* Making it occupy the whole height of the viewport */
+  height: 100vh;
+  /* Giving it the space not used by the sidebar (20vh) */
+  width: 80vw;
+}
 
+/* Each of the slides in the caroussel */
+.slide {
+  /* Positioned absolute and at the top left corner of the carousel */
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* Giving them the whole width available taking in to account the sidebar */
+  width: 80vw;
+  /* And the full height of the viewport*/
+  height: 100%;
+  /* The initial opacity is 0 but Javascript will modify this to transition between slides */
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+/* Javascript will manage this class to transition between slides */
+.slide.current {
+  opacity: 1;
+}
+
+/* Styles the images to be full screen and responsive */
+img.bg {
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1004px;
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+  /* Set up positioning */
+  top: 0;
+  left: 0;
+}
+
+/* Styling the overlays containing the info of each image */
+.slide .overlay {
+  position: absolute;
+  bottom: 4vh;
+  /* Initially positioning them  outside the page, so they later slide in from the left, and giving them an opacity of 0 so they also fade in */
+  left: -600px;
+  opacity: 0;
+  width: 600px;
+  background-color: var(--caption-background);
+  color: var(--dark-grey);
+  padding: 15px;
+}
+
+.slide .overlay h1 {
+  margin-bottom: 10px;
+}
+
+/* Whan Javascript adds the current class to the parent slide we make the overlay visible and slide in from the left */
+.slide.current .overlay {
+  opacity: 1;
+  transform: translateX(600px);
+  transition: all 0.7s ease-in-out 0.3s;
+}
+
+/* SMALLER SCREENS */
+@media screen and (max-width:640px) {
+  /* Adjusting the grid layout to have only one column */
+  main{
+    grid-template-columns: 1fr;
+  }
+  /* Make the sidebar dissappear with a nice transition effect */
+  nav{
+    width: 0px;
+    opacity: 0.9;
+    transition: all 1s ease-in-out;
+  }
+  /* Positioning all the sections in the one-column grid */
+  #home, #aboutMe, #whyFC,
+  #whatIlearned, #portfolio,
+  #gallery {
+    grid-column-start: 1;
+  }
+  /* Now that there's no sidebar the caroussel and its slides can use the whole width of the viewport */
+  .caroussel, .slide{
+    width: 100vw;
+  }
+
+  /* Adding the hamburger and close buttons to the layout and positioning them */
+  .buttons button#hamburger, .buttons button#close{
+    display: block;
+    position: fixed;
+    top: 2vh;
+    left: 2vw;
+    /* Making them stay on top of the navbar when this one is visible (navbar has an index of 1) */
+    z-index: 2;
+    transition: 1s ease-in-out;
+  }
+
+  /* Revealing the hamburger button and placing it on top of the sidebar and the close button */
+  .buttons button#hamburger {
+    opacity: 1;
+    /* Because the hamburger button is the first one that needs to be displayed I give him an index of 3, otherwise there may be conflict between it and the close button */
+    z-index: 3;
+  }
+
+  /* Making the close button invisible */
+  .buttons button#close {
+    opacity: 0;
+  }
+}
+
+/* when reachingthis width let's change the way the overlays look */
+@media screen and (max-width: 814px) {
+  .slide .overlay {
+    /* Positioning them below the page so the slide up from the bottom */
+    bottom: -300px;
+    left: 0;
+    /* Make them use the whole width of the viewport */
+    width: 100%;
+  }
+
+  /* When Javascript gives them the class of current make them slide from the bottom */
+  .slide.current .overlay {
+    transform: translateY(-300px);
+  }
+
+  /* Reposition the play and pause buttons so they don't interfere with the overlay */
+  .buttons button#play, .buttons button#pause {
+    position: absolute;
+    top: 65vh;
+    left: 45%;
+    transition: 0.3s ease-in-out;
+  }
+}
+
+/* On resizing, when reaching half the width of the images, make sure the images are centered */
+@media screen and (max-width: 1004px) {
+  img.bg {
+    left: 50%;
+    /* 50% of the image width + an offset to compensate for the sidebar */
+    margin-left: calc(-502px + 40%);
+    transition: 0.3s;
+  }
 }
