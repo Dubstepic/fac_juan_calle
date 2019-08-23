@@ -15,7 +15,8 @@ const highlightLinks = () => {
     // Grab the name of the section that the link points to.
     let section = document.querySelector(link.hash);
 
-    // Check the position of each section relative to the top of the browser's window and apply or remove the active class to the element
+    // Check the position of each section relative to the top of the browser's window and apply or
+    // remove the active class to the element
     if (section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
       link.classList.add('active');
     } else {
@@ -54,7 +55,8 @@ const closeNav = () => {
   nav.style.width = '0%';
 };
 
-// Fixes a problem that prevented the sidebar from reappearing if the screen was resized again to a bigger width.
+// Fixes a problem that prevented the sidebar from reappearing if the screen was resized again to a
+// bigger width leaving an ugly white space in its place.
 const fixResize = () => {
   let viewportWidth = window.innerWidth;
   if (viewportWidth > 640) {
@@ -77,3 +79,112 @@ close.addEventListener('click', e => {
 
 // Listening for resizing of the viewport to apply the resize fix
 window.addEventListener('resize', fixResize);
+
+// ------------------------------------------------------------------
+
+/* ----- IMAGE CAROUSSEL ----- */
+
+const slides = document.querySelectorAll('.slide');
+const next = document.querySelector('#next');
+const previous = document.querySelector('#previous');
+const play = document.querySelector('#play');
+const pause = document.querySelector('#pause');
+
+// Interval at which the reproduction of slides will happen
+const playInterval = 5000;
+let playing = false;
+let slideInterval;
+
+// Function to play the next slide
+const nextSlide = () => {
+  // Get current class
+  const current = document.querySelector('.current');
+
+  // Remove current class
+  current.classList.remove('current');
+
+  // Check for next slide and make sure that is not the div with class buttons
+  if (current.nextElementSibling && !current.nextElementSibling.classList.contains('buttons')) {
+    // Add current class to next next sibling
+    current.nextElementSibling.classList.add('current');
+  } else {
+    // Add current to the initial slide
+    slides[0].classList.add('current');
+  }
+
+  current.classList.remove('current');
+};
+
+const previousSlide = () => {
+  // Get current class
+  const current = document.querySelector('.current');
+
+  // Remove current class
+  current.classList.remove('current');
+
+  // Check for previous slide
+  if (current.previousElementSibling) {
+    // Add current class to previous next sibling
+    current.previousElementSibling.classList.add('current');
+  } else {
+    // Add current to the last slide
+    slides[slides.length - 1].classList.add('current');
+  }
+
+  current.classList.remove('current');
+};
+
+// Function to activate the continuous playing of slides
+const playSlides = () => {
+  playing = true;
+
+  // Hides the play button and show the pause button instead;
+  play.classList.add('invisible');
+  pause.classList.remove('invisible');
+  slideInterval = setInterval(nextSlide, playInterval);
+};
+
+// Function to pause the reproduction o
+const pauseSlides = () => {
+  playing = false;
+  play.classList.remove('invisible');
+  pause.classList.add('invisible');
+  clearInterval(slideInterval);
+};
+
+// Button events
+next.addEventListener('click', e => {
+  nextSlide();
+});
+
+previous.addEventListener('click', e => {
+  previousSlide();
+});
+
+play.addEventListener('click', e => {
+  playSlides();
+});
+
+pause.addEventListener('click', e => {
+  pauseSlides();
+});
+
+// Keyboard events
+document.addEventListener('keyup', (e) => {
+  switch (e.code) {
+    case 'ArrowRight':
+      nextSlide();
+      break;
+    case 'ArrowLeft':
+      previousSlide();
+      break;
+    case 'Space':
+      if (playing) {
+        pauseSlides();
+      } else {
+        playSlides();
+      }
+
+      break;
+  }
+});

@@ -10,7 +10,7 @@
   <script src="https://kit.fontawesome.com/9239c1ee11.js"></script>
 </head>
 <body>
-
+  <!-- Sidebar Navigation -->
   <nav role="navigation">
     <ul class="navBar">
       <li><a href="#home"class="active">Home</a></li>
@@ -20,6 +20,7 @@
       <li><a href="#portfolio">Portfolio</a></li>
       <li><a href="#gallery">Gallery</a></li>
     </ul>
+    <!-- Social links -->
     <div class="social">
       <ul>
         <li><a href="https://github.com/Dubstepic" target="_blank"><img src="assets/icons/github.svg" alt="github logo"></img></a></li>
@@ -28,10 +29,17 @@
       </ul>
     </div>
   </nav>
+  
+  <!-- Buttons for the movile version hidden by default -->
+  <div class="buttons">
+    <button class="invisible" id="hamburger"><i class="fas fa-bars"></i></button>
+    <button class="invisible" id="close"><i class="fas fa-times"></i></button>
+  </div>
 
+  <!-- The main content of the website -->
   <main>
-    <button class="buttons invisible" id="hamburger"><i class="fas fa-bars"></i></button>
-    <button class="buttons invisible" id="close"><i class="fas fa-times"></i></button>
+
+
     <section id="home">
 
     </section>
@@ -57,8 +65,121 @@
     </section>
 
     <section id="gallery">
+      <div class="caroussel">
 
+        <div class="slide current">
+          <img src="assets/images/image1.jpg" alt="View of Daintree Forest in Australia" class="bg">
+          <div class="overlay">
+            <h1>Daintree Rainforest - Australia</h1>
+            <p>The World Heritage-listed  is so beautiful that its ancient ferns, emerald green vines and lush canopy provided inspiration for the movie Avatar.</p>
+          </div>
+        </div>
 
+        <div class="slide">
+          <img src="assets/images/image2.jpg" alt="Image of the city of ghosts cemetery in Vietnam" class="bg">
+          <div class="overlay">
+            <h1>City of Ghosts - Vietnam</h1>
+            <p>Located in An Bang, a quiet village near Thuan An Beach. This local cemetery, with its brilliantly colored structures built on white sand, stretches along the side of the road for 3 kilometers.</p>
+          </div>
+        </div>
+
+        <div class="slide">
+          <img src="assets/images/image3.jpg" alt="View from the top of Mua Cave, Vietnam, Overviewing a temple on top of a mountain" class="bg">
+          <div class="overlay">
+            <h1>Mua Cave - Vietnam</h1>
+            <p>The way leading to Mua Cave is a 500-step zigzag stone staircase. At the end of the staircase is an altar of Quan Am, the Goddess of Mercy, presiding some rather breathtaking views.</p>
+          </div>
+        </div>
+
+        <div class="slide">
+          <img src="assets/images/image4.jpg" alt="View from the top of Mua Caves overviewing rice fields" class="bg">
+          <div class="overlay">
+            <h1>Mua Cave - Vietnam</h1>
+            <p>Stunning views of flooded paddie fields that lay flat between the karstic formations</p>
+          </div>
+        </div>
+
+        <div class="slide">
+          <img src="assets/images/image5.jpg" alt="Sunset from the top of Mua Caves" class="bg">
+          <div class="overlay">
+            <h1>Mua Cave - Vietnam</h1>
+            <p>The sunset from the peak of the karstic formations floods the sky with unbelievably warm gradients</p>
+          </div>
+        </div>
+
+        <div class="slide">
+          <img src="assets/images/image6.jpg" alt="View of Daintree Forest from the air" class="bg">
+          <div class="overlay">
+            <h1>Daintree Forest - Australia</h1>
+            <p>At around 1,200 square kilometres, the Daintree is a part of the largest continuous area of tropical rainforest on the Australian continent.</p>
+          </div>
+        </div>
+
+        <div class="slide">
+          <img src="assets/images/image7.jpg" alt="Image of the desserted sandy Starfish Beach in Vietnam" class="bg">
+          <div class="overlay">
+            <h1>Starfish Beach - Vietnam</h1>
+            <p>On the northern coast of Phu Quoc, a gorgeous beach, totally devoid of other people. Make sure to step cautiously into the water to avoid stepping on the hundreds of starfish strewn about the floor.</p>
+          </div>
+        </div>
+
+        <div class="slide">
+          <img src="assets/images/image8.jpg" alt="Image of a buddha with neon halos comming out of its head" class="bg">
+          <div class="overlay">
+            <h1>Linh Phuoc Pagoda - Vietnam</h1>
+            <p>Linh Phuoc Pagoda is a beautiful Buddhist shrine in Da Lat, every surface of which is covered in stunning mosaics. There's a 49-metre-long dragon’s head at the entrance gate, which was meticulously pieced together from 12,000 glass bottles.</p>
+          </div>
+        </div>
+
+        <div class="slide">
+          <img src="assets/images/image9.jpg" alt="View of the jungle in Cham Island with the sea in the background" class="bg">
+          <div class="overlay">
+            <h1>Cham Island - Vietnam</h1>
+            <p>15km off the coast of Hoi An, this UNESCO World Biosphere Reserve is covered in exhuberant jungle. It attracts travellers looking to enjoy a day of scuba diving and snorkelling in its pristine waters.</p>
+          </div>
+        </div>
+
+        <div class="slide">
+          <img src="assets/images/image10.jpg" alt="Image of the sandy city of Lak Sao in Laos" class="bg">
+          <div class="overlay">
+            <h1>Lak Sao - Laos</h1>
+            <p>A small town in Bolikhamsai Province, of central Laos. The rather desserted landscape is presided by a towering mountain that seems to appear from nowhere </p>
+          </div>
+        </div>
+
+        <div class="slide">
+          <img src="assets/images/image11.jpg" alt="Air view of the Australian Great Barrier Reef" class="bg">
+          <div class="overlay">
+            <h1>Great Barrier Reef - Audtralia</h1>
+            <p>The Great Barrier Reef is one of the seven wonders of the natural world, and pulling away from it, and viewing it from a greater distance, you can understand why. It is larger than the Great Wall of China and the only living thing on earth visible from space.</p>
+          </div>
+        </div>
+
+        <div class="slide">
+          <img src="assets/images/image12.jpg" alt="Picture of Juan with some Vietnamese friends" class="bg">
+          <div class="overlay">
+            <h1>Making new Friends</h1>
+            <p>In Vietnam I made life-long friends with local people that helped me discover the country in the best way possible.</p>
+          </div>
+        </div>
+
+        <div class="slide">
+          <img src="assets/images/image13.jpg" alt="Picture of Juan trekking alone in the jungle" class="bg">
+          <div class="overlay">
+            <h1>Walks in the jungle</h1>
+            <p>I loved getting lost in the middle of the Vietnamese jungle. Trekking for hours allowed me to reconnect with Nature and discover some truly amazing fauna and flora</p>
+          </div>
+        </div>
+
+        <!-- Caroussel user interface buttons -->
+        <div class="buttons">
+          <button id="previous"><i class="fas fa-chevron-left"></i></button>
+          <button id="play"><i class="fas fa-play"></i></button>
+          <button id="pause" class="invisible"><i class="fas fa-pause"></i></button>
+          <button id="next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+
+      </div>
     </section>
   </main>
   <script src="js/script.js" charset="utf-8"></script>
