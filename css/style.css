@@ -151,7 +151,7 @@ main {
 
 /* HOME */
 #home {
-  background: url('../assets/images/bgShapes.png') no-repeat center center/cover;
+  background: url('../assets/images/bgHome.png') no-repeat center center/cover;
 }
 
 /* ABOUT ME */
@@ -172,6 +172,115 @@ main {
 /* PORTFOLIO */
 #portfolio {
   background-color: #F18870;
+}
+
+/* Make the div containing the cards centered and create a responsive grid*/
+.container {
+  width: 80%;
+  height: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+  grid-gap: 1em;
+  align-content: center;
+}
+
+/* Make each card span the whole grid cell space and change the cursos to pointer */
+.container .card {
+  position:relative;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+/* Styling both sides of the cards */
+.front, .back {
+  width: 100%;
+  height: 100%;
+  /* Avoid scrolling */
+  overflow: hidden;
+  /* Avoid text to be mirrowed when turning the card 180deg */
+  backface-visibility: hidden;
+  transition: 0.6s ease-in-out;
+}
+
+/* Positioning the front absolute so it can sit on top of the back */
+.front {
+  position: absolute;
+  transform: perspective(600px) rotateY(0deg);
+}
+
+/* Giving the back some height, a background image, and flipping it over 180deg so its not visibile  */
+.back {
+  height: 30vh;
+  background: var(--nav-gradient);
+  transform: perspective(600px) rotateY(180deg);
+}
+
+/* Styling the back of the card */
+.back-content {
+  height: 100%;
+  top: 50px;
+  color: var(--white);
+  opacity: 0.8;
+  text-align: center;
+  width: 100%;
+  padding: 2em;
+}
+
+/* Styling the buttons at the back of the card */
+.back-content > .buttons{
+  width: 100%;
+  transform: scale(0.6);
+  display: inline-flex;
+  justify-content: space-between;
+  font-size: 1.2em;
+}
+
+/* avoiding the default blue colour in links  */
+.back-content a {
+    color: inherit;
+}
+
+/* Adjusting the size of the span text */
+.back-content span{
+   font-size: 0.8em;
+ }
+
+/* Styling the technologies icons */
+.technologies {
+  font-size: 1.2em;
+  margin-top: 0.5em;
+}
+
+/* targetting the 'back' immediate child of card when hovering and modifying its rotation and perspective */
+.card:hover > .back {
+  transform: perspective(600px) rotateY(0deg);
+}
+
+/* targetting the 'front' immediate child of card when hovering and modifying its rotation and perspective */
+.card:hover > .front {
+  transform: perspective(600px) rotateY(-180deg);
+}
+
+/* Giving each back side of the cards a responsive background image */
+.front#one{
+  background: url('../assets/images/portfolio1.png') no-repeat center center/cover;
+}
+.front#two{
+  background: url('../assets/images/portfolio2.jpg') no-repeat center center/cover;
+}
+.front#three{
+  background: url('../assets/images/portfolio3.png') no-repeat center center/cover;
+}
+.front#four{
+  background: url('../assets/images/portfolio4.png') no-repeat center center/cover;
+}
+.front#five{
+  background: url('../assets/images/portfolio5.png') no-repeat center center/cover;
+}
+.front#six{
+  background: url('../assets/images/portfolio6.png') no-repeat center center/cover;
 }
 
 /* GALLERY */
@@ -295,17 +404,30 @@ img.bg {
   }
 }
 
-/* when reachingthis width let's change the way the overlays look */
-@media screen and (max-width: 814px) {
+  /* Let the portfolio section have an auto height so it can accommodate all the cards without breaking the layout */
+@media screen and (max-width:1271px) {
+  #portfolio{
+    height: auto;
+    padding: 2vh;
+  }
+}
+
+@media screen and (max-width: 813px) {
+  /* Let the portfolio section have an auto height so it can accommodate all the cards without breaking the layout */
+  #portfolio {
+    height: auto;
+    padding: 2vh;
+  }
+
+  /* Positioning the caroussel overlays below the page so they slide up from the bottom */
   .slide .overlay {
-    /* Positioning them below the page so the slide up from the bottom */
     bottom: -300px;
     left: 0;
     /* Make them use the whole width of the viewport */
     width: 100%;
   }
 
-  /* When Javascript gives them the class of current make them slide from the bottom */
+  /* When Javascript gives the slides the class of current make them slide from the bottom */
   .slide.current .overlay {
     transform: translateY(-300px);
   }
