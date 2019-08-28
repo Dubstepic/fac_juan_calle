@@ -15,17 +15,22 @@
   --dark-grey: #373D46;
   --dark-blue-grey: #231F48;
 }
-
-*{
+html {
+  font-size: 62.5%;
+}
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   scroll-behavior:smooth;
 }
-
 body {
   font-family: 'Nunito', sans-serif;
   background: var(--body-gradient);
+  font-size: 1.4rem;
+}
+h1 {
+  font-size: 2.4rem;
 }
 
                       /* ------ NAVIGATION SIDEBAR AND BUTTONS ------ */
@@ -46,7 +51,8 @@ nav li {
 /* Styling the links */
 nav li a {
   color: var(--white);
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 800;
   opacity: 0.6;
   text-decoration: none;
   transition: 0.5s;
@@ -79,8 +85,8 @@ nav li a:hover {
 
 /* Styling the SVG images of the links */
 .social img {
-  width: 3em;
-  padding: 0.5em;
+  width: 6rem;
+  padding: 1rem;
 }
 
 /* What to do when javascript adds this class to a specific link */
@@ -181,7 +187,7 @@ main {
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-  grid-gap: 1em;
+  grid-gap: 2rem;
   align-content: center;
 }
 
@@ -225,7 +231,7 @@ main {
   opacity: 0.8;
   text-align: center;
   width: 100%;
-  padding: 2em;
+  padding: 4rem;
 }
 
 /* Styling the buttons at the back of the card */
@@ -234,7 +240,7 @@ main {
   transform: scale(0.6);
   display: inline-flex;
   justify-content: space-between;
-  font-size: 1.2em;
+  font-size: 2.5rem;
 }
 
 /* avoiding the default blue colour in links  */
@@ -244,13 +250,13 @@ main {
 
 /* Adjusting the size of the span text */
 .back-content span{
-   font-size: 0.8em;
+   font-size: 1.2rem;
  }
 
 /* Styling the technologies icons */
 .technologies {
-  font-size: 1.2em;
-  margin-top: 0.5em;
+  font-size: 1.6rem;
+  margin-top: 1rem;
 }
 
 /* targetting the 'back' immediate child of card when hovering and modifying its rotation and perspective */
