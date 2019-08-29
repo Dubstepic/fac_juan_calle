@@ -306,9 +306,11 @@ main {
   opacity: 0.8;
 }
 #aboutMe h2{
+  color: var(--dark-blue-grey);
   background: var(--overlay-background);
   padding: 0.5em;
   box-shadow: var(--overlay-shadow);
+  justify-self: center;
 }
 #aboutMe p{
   color: var(--dark-grey);
@@ -316,53 +318,72 @@ main {
   line-height: 2rem;
   justify: center;
 }
-#aboutMe #why, #aboutMe #where{
-  justify-self: center;
-  color: var(--dark-blue-grey);
-}
-#aboutMe #why{
+/* Placing elements in the grid */
+#aboutMe h2:nth-of-type(1){
     grid-area: title1;
 }
-#aboutMe #where{
-  grid-area: title2;
+#aboutMe h2:nth-of-type(2){
+    grid-area: title2;
 }
-/* Placing the paragraph sibling of the first paragraph in the grid */
-#aboutMe p+p {
+#aboutMe p:nth-of-type(2) {
+  grid-area: p1;
+}
+#aboutMe p:nth-of-type(3) {
   grid-area: p2;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
+#aboutMe p:nth-of-type(3) {
+  grid-area: p3;
+}
 
 /* WHY FOUNDERS AND CODERS */
-#whyFC {
+#whyFC, #whatIlearned{
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-bottom: 5vh;
+}
+#whyFC{
   background: url('../assets/images/bgShapes2.png') no-repeat center center/cover;
 }
+#whyFC #whyFC-grid,  #whatIlearned #whatIlearned-grid{
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 90%;
+  grid-gap: 5rem;
+}
+
+#whyFC h1 , #whatIlearned h1{
+  display: inline;
+  justify-self: center;
+}
+#whyFC h1:after{
+  content: "Why F&C";
+}
+
+#whyFC p, #whatIlearned p{
+  color: var(--dark-grey);
+  font-size: 1.6rem;
+  line-height: 2rem;
+  justify: center;
+}
+
 
 /* WHAT I'VE LEARNED */
 #whatIlearned {
-  background-color: #45A5AB;
+  background: url('../assets/images/bgShapes3.png') no-repeat center center/cover;
 }
-
+#whatIlearned h1:after{
+  content: "What have I learned?";
+}
 /* PORTFOLIO */
 #portfolio {
-  background-color: #F18870;
+  background: url('../assets/images/bgShapes2.png') no-repeat center center/cover;
   height: 100vh;
   padding-bottom: 5vh;
 }
 
 /* Make the div containing the cards centered and create a responsive grid*/
-.portfolio-grid {
+#portfolio-grid {
   width: 80%;
   height: 100%;
   margin: 0 auto;
@@ -373,7 +394,7 @@ main {
 }
 
 /* Make each card span the whole grid cell space and change the cursos to pointer */
-.portfolio-grid .card {
+#portfolio-grid .card {
   position:relative;
   cursor: pointer;
   width: 100%;
