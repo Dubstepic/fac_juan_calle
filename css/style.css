@@ -17,6 +17,10 @@
   --dark-blue-grey: #231F48;
   --salmon: rgba(249, 107, 142, 0.5);
   --purple: rgba(130, 125, 253, 0.5);
+  --overlay-shadow: 3px -1px 25px 0px rgba(0,0,0,0.2);
+  --buttons-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+  --buttons-shadow-hovered: 0 10px 50px rgba(0, 0, 0, 1);
+  --text-shadow: 5px 10px var(--dark-grey);
 }
 html {
   font-size: 62.5%;
@@ -32,18 +36,20 @@ body {
   background: var(--body-gradient);
   font-size: 1.4rem;
 }
-h1 {
+/* Make all the H1 headers have an anaglyph effect */
+h1{
   position: relative;
   font-size: 9rem;
   padding-left: 2.5rem;
   width: auto;
   color: var(--salmon);
-  background-color: var(--overlay-background);
-  -webkit-box-shadow: 3px -1px 25px 0px rgba(0,0,0,0.2);
-  -moz-box-shadow: 3px -1px 25px 0px rgba(0,0,0,0.2);
-  box-shadow: 3px -1px 25px 0px rgba(0,0,0,0.2);
+  background-color: var(--caption-background);
+  -webkit-box-shadow: var(--overlay-shadow);
+  -moz-box-shadow: var(--overlay-shadow);
+  box-shadow: var(--overlay-shadow);
 }
-h1:after {
+/* I use the after pseudo element to overlap the same text with different color */
+h1:after{
   padding-left: 2.5rem;
   position: absolute;
   left: -4px;
@@ -123,8 +129,10 @@ nav li a:hover {
   color: var(--white);
   cursor: pointer;
   padding: 13px 15px;
-  text-shadow: 5px 10px var(--dark-grey);
-  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+  text-shadow: var(--text-shadow);
+  -webkit-box-shadow: var(--buttons-shadow);
+  -moz-box-shadow: var(--buttons-shadow);
+  box-shadow: var(--buttons-shadow);
   border-radius: 50%;
   outline: none;
 }
@@ -133,7 +141,10 @@ nav li a:hover {
 .buttons button:hover {
   background-color: #fff;
   color: var(--dark-grey);
-  box-shadow: 0 10px 50px rgba(0, 0, 0, 1);
+  box-shadow: var(--buttons-shadow-hovered);
+  -webkit-box-shadow: var(--buttons-shadow-hovered);
+  -moz-box-shadow: var(--buttons-shadow-hovered);
+  box-shadow: var(--buttons-shadow-hovered);
   -webkit-transition: 0.3s ease-in-out;
   -moz-transition: 0.3s ease-in-out;
   transition: 0.3s ease-in-out;
@@ -174,11 +185,13 @@ main {
 #whatIlearned, #portfolio,
 #gallery {
   grid-column-start: 2;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
 }
 
 /* HOME */
 #home {
+
   /* Setting up a responsive background image */
   background: url('../assets/images/bgHome.png') no-repeat center center/cover;
   /* Avoiding scrolling */
@@ -187,6 +200,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-bottom: 10vh;
 }
 
 #home #home-grid {
@@ -197,15 +211,14 @@ main {
   grid-template-columns: 2fr 1fr;
   grid-gap: 3%;
   /* Creating some grid template areas that will be modified later on with media queries */
-  grid-template-areas: "heading image"
-                       "paragraph paragraph";
+  grid-template-areas: "header image"
+                       "content content";
 }
 
-/* Creating the anaglyph effect of the h1 */
 #home h1 {
-  grid-area: heading;
+  grid-area: header;
 }
-
+/* Creating the anaglyph effect of the h1 */
 #home h1:after {
   content:"Hello World!";
 }
@@ -222,9 +235,9 @@ main {
   transform: translateY(-40%);
 
   /* Giving it a shadow */
-  -webkit-box-shadow: 3px -1px 25px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 3px -1px 25px 0px rgba(0,0,0,0.75);
-  box-shadow: 3px -1px 25px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: var(--overlay-shadow);
+  -moz-box-shadow: var(--overlay-shadow);
+  box-shadow: var(--overlay-shadow);
 
   /* Making it rounded so the shadow is not a square */
   -moz-border-radius: 200px 200px 200px 200px;
@@ -234,26 +247,106 @@ main {
 
 #home p{
   /* Positioning it in the grid area */
-  grid-area: paragraph;
+  grid-area: content;
   font-size: 2.5rem;
   color: var(--dark-blue-grey);
-  background-color: var(--overlay-background);
+  background-color: var(--caption-background);
   padding: 1.5rem;
 
   /* Giving it a shadow */
-  -webkit-box-shadow: 3px -1px 25px 0px rgba(0,0,0,0.2);
-  -moz-box-shadow: 3px -1px 25px 0px rgba(0,0,0,0.2);
-  box-shadow: 3px -1px 25px 0px rgba(0,0,0,0.2);
+  -webkit-box-shadow: var(--overlay-sahdow);
+  -moz-box-shadow: var(--overlay-sahdow);
+  box-shadow: var(--overlay-sahdow);
 }
 
 /* ABOUT ME */
 #aboutMe {
   background: url('../assets/images/bgShapes.png') no-repeat center center/cover;
+  /* Using flexbox to center the grid in the top middle of the page */
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-bottom: 5vh;
 }
+
+/* Setting up the grid layout */
+#aboutMe #aboutMe-grid {
+  width: 90%;
+  display: grid;
+  grid-gap: 30px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "header       header"
+                       "subheader subheader"
+                       "title1       title2"
+                       "p1               p3"
+                       "p2               .";
+}
+
+#aboutMe h1 {
+  display: inline;
+  margin-top: 0;
+  grid-area: header;
+  justify-self: center;
+}
+
+#aboutMe h1:after {
+  content: "About Me";
+  justify-self: center;
+}
+
+/* Styling the paragraph immediatly next to the header */
+#aboutMe h1+p {
+  color: var(--dark-blue-grey);
+  line-height: 2.5rem;
+  font-size: 1.7rem;
+  grid-area: subheader;
+  justify-self: center;
+  text-align: center;
+  margin-top: -5rem;
+  opacity: 0.8;
+}
+#aboutMe h2{
+  background: var(--overlay-background);
+  padding: 0.5em;
+  box-shadow: var(--overlay-shadow);
+}
+#aboutMe p{
+  color: var(--dark-grey);
+  font-size: 1.6rem;
+  line-height: 2rem;
+  justify: center;
+}
+#aboutMe #why, #aboutMe #where{
+  justify-self: center;
+  color: var(--dark-blue-grey);
+}
+#aboutMe #why{
+    grid-area: title1;
+}
+#aboutMe #where{
+  grid-area: title2;
+}
+/* Placing the paragraph sibling of the first paragraph in the grid */
+#aboutMe p+p {
+  grid-area: p2;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* WHY FOUNDERS AND CODERS */
 #whyFC {
-  background-color: #F6CD61;
+  background: url('../assets/images/bgShapes2.png') no-repeat center center/cover;
 }
 
 /* WHAT I'VE LEARNED */
@@ -264,6 +357,8 @@ main {
 /* PORTFOLIO */
 #portfolio {
   background-color: #F18870;
+  height: 100vh;
+  padding-bottom: 5vh;
 }
 
 /* Make the div containing the cards centered and create a responsive grid*/
@@ -525,13 +620,7 @@ img.bg {
 }
 
 @media screen and (max-width: 813px) {
-  /* Making the home section as tall as teh content inside it and give it some padding */
-  #home{
-    height: auto;
-    padding-bottom: 10vh;
-  }
-
-  /* Making the home grid have just one column */
+  /* Making the home grid have just one column and rearrange the content */
   #home #home-grid {
     grid-template-columns: 1fr;
     grid-template-areas: "image"
@@ -540,22 +629,26 @@ img.bg {
     grid-gap: 1%;
   }
 
-  /* Assigning a new grid area to the image and moving it a bit down when in mobile screens*/
+  /* Moving the profile pic a bit down when in mobile screens*/
   #home img{
-    grid-area: image;
-
     -webkit-transform: translateY(10%);
     -moz-transform: translateY(10%);
     transform: translateY(10%);
   }
 
-  /* Relocating the header and paragraph */
-  #home h1{
-    grid-area: header;
-  }
   #home p{
     margin-top: -40px;
-    grid-area: content;
+  }
+  /* Making the aboutMe grid have just one column and rearrange the content */
+  #aboutMe #aboutMe-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas: "header"
+                         "subheader"
+                         "title1"
+                         "p1"
+                         "p2"
+                         "title2"
+                         "p3"
   }
 
   /* Let the portfolio section have an auto height so it can accommodate all the cards without breaking the layout */
