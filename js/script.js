@@ -169,7 +169,7 @@ pause.addEventListener('click', e => {
   pauseSlides();
 });
 
-// Keyboard events
+// Adding event listeners to keyboard events
 document.addEventListener('keyup', (e) => {
   switch (e.code) {
     case 'ArrowRight':

@@ -4,16 +4,19 @@
 /* CSS variables */
 :root{
   --body-gradient: linear-gradient(to right,
-      rgba(244, 246, 250, 1),
-      rgba(239, 241, 247, 1));
+      rgba(234, 235, 240, 1),
+      rgba(229, 231, 237, 1));
   --nav-gradient: linear-gradient(to right,
       rgba(249, 107, 142, 1),
       rgba(218, 103, 230, 1),
       rgba(130, 125, 253, 1));
   --caption-background: rgba(255, 255, 255, 0.8);
+  --overlay-background: rgba(255, 255, 255, 0.2);
   --white: #FFFFFF;
   --dark-grey: #373D46;
   --dark-blue-grey: #231F48;
+  --salmon: rgba(249, 107, 142, 0.5);
+  --purple: rgba(130, 125, 253, 0.5);
 }
 html {
   font-size: 62.5%;
@@ -55,6 +58,8 @@ nav li a {
   font-weight: 800;
   opacity: 0.6;
   text-decoration: none;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
   transition: 0.5s;
 }
 
@@ -114,6 +119,8 @@ nav li a:hover {
   background-color: #fff;
   color: var(--dark-grey);
   box-shadow: 0 10px 50px rgba(0, 0, 0, 1);
+  -webkit-transition: 0.3s ease-in-out;
+  -moz-transition: 0.3s ease-in-out;
   transition: 0.3s ease-in-out;
 }
 
@@ -157,7 +164,87 @@ main {
 
 /* HOME */
 #home {
+  /* Setting up a responsive background image */
   background: url('../assets/images/bgHome.png') no-repeat center center/cover;
+  /* Avoiding scrolling */
+  overflow: hidden;
+  /* Using flexbox to center the grid in the middle of the page */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#home #home-grid {
+  /* Make the grid container a bit smaller than the page to create some padding effect */
+  width: 80%;
+  display: grid;
+  /* Create two columns one of which is twice as wide than the other */
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 3%;
+  /* Creating some grid template areas that will be modified later on with media queries */
+  grid-template-areas: "heading image"
+                       "paragraph paragraph";
+}
+
+/* Creating the anaglyph effect of the h1 */
+#home h1 {
+  grid-area: heading;
+  width: auto;
+  padding-left: 2.5rem;
+  font-size: 9rem;
+  position: relative;
+  color: var(--salmon);
+  background-color: var(--overlay-background);
+
+  -webkit-box-shadow: 3px -1px 25px 0px rgba(0,0,0,0.2);
+  -moz-box-shadow: 3px -1px 25px 0px rgba(0,0,0,0.2);
+  box-shadow: 3px -1px 25px 0px rgba(0,0,0,0.2);
+}
+
+#home h1:after {
+  content:"Hello World!";
+  padding-left: 2.5rem;
+  position: absolute;
+  left: -4px;
+  top: 5px;
+  color: var(--purple);
+}
+
+
+#home img{
+  /* Positioning the image in the grid */
+  grid-area: image;
+  justify-self: center;
+  align-self: start;
+
+  /* Moving it on the Y axis */
+  -webkit-transform: translateY(-40%);
+  -moz-transform: translateY(-40%);
+  transform: translateY(-40%);
+
+  /* Giving it a shadow */
+  -webkit-box-shadow: 3px -1px 25px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px -1px 25px 0px rgba(0,0,0,0.75);
+  box-shadow: 3px -1px 25px 0px rgba(0,0,0,0.75);
+
+  /* Making it rounded so the shadow is not a square */
+  -moz-border-radius: 200px 200px 200px 200px;
+  -webkit-border-radius: 200px 200px 200px 200px;
+  border-radius: 200px 200px 200px 200px;
+}
+
+#home p{
+  /* Positioning it in the grid area */
+  grid-area: paragraph;
+  font-size: 2.5rem;
+  color: var(--dark-blue-grey);
+  background-color: var(--overlay-background);
+  padding: 1.5rem;
+
+  /* Giving it a shadow */
+  -webkit-box-shadow: 3px -1px 25px 0px rgba(0,0,0,0.2);
+  -moz-box-shadow: 3px -1px 25px 0px rgba(0,0,0,0.2);
+  box-shadow: 3px -1px 25px 0px rgba(0,0,0,0.2);
 }
 
 /* ABOUT ME */
@@ -207,12 +294,17 @@ main {
   overflow: hidden;
   /* Avoid text to be mirrowed when turning the card 180deg */
   backface-visibility: hidden;
+
+  -webkit-transition: 0.6s ease-in-out;
+  -moz-transition: 0.6s ease-in-out;
   transition: 0.6s ease-in-out;
 }
 
 /* Positioning the front absolute so it can sit on top of the back */
 .front {
   position: absolute;
+  -webkit-transform: perspective(600px) rotateY(0deg);
+  -moz-transform: perspective(600px) rotateY(0deg);
   transform: perspective(600px) rotateY(0deg);
 }
 
@@ -220,6 +312,8 @@ main {
 .back {
   height: 30vh;
   background: var(--nav-gradient);
+  -webkit-transform: perspective(600px) rotateY(180deg);
+  -moz-transform: perspective(600px) rotateY(180deg);
   transform: perspective(600px) rotateY(180deg);
 }
 
@@ -237,10 +331,13 @@ main {
 /* Styling the buttons at the back of the card */
 .back-content > .buttons{
   width: 100%;
-  transform: scale(0.6);
   display: inline-flex;
   justify-content: space-between;
   font-size: 2.5rem;
+
+  -webkit-transform: scale(0.6);
+  -moz-transform: scale(0.6);
+  transform: scale(0.6);
 }
 
 /* avoiding the default blue colour in links  */
@@ -261,11 +358,15 @@ main {
 
 /* targetting the 'back' immediate child of card when hovering and modifying its rotation and perspective */
 .card:hover > .back {
+  -webkit-transform: perspective(600px) rotateY(0deg);
+  -moz-transform: perspective(600px) rotateY(0deg);
   transform: perspective(600px) rotateY(0deg);
 }
 
 /* targetting the 'front' immediate child of card when hovering and modifying its rotation and perspective */
 .card:hover > .front {
+  -webkit-transform: perspective(600px) rotateY(-180deg);
+  -moz-transform: perspective(600px) rotateY(-180deg);
   transform: perspective(600px) rotateY(-180deg);
 }
 
@@ -318,6 +419,9 @@ main {
   height: 100%;
   /* The initial opacity is 0 but Javascript will modify this to transition between slides */
   opacity: 0;
+
+  -webkit-transition: opacity 0.4s ease-in-out;
+  -moz-transition: opacity 0.4s ease-in-out;
   transition: opacity 0.4s ease-in-out;
 }
 
@@ -359,7 +463,13 @@ img.bg {
 /* Whan Javascript adds the current class to the parent slide we make the overlay visible and slide in from the left */
 .slide.current .overlay {
   opacity: 1;
+
+  -webkit-transform: translateX(600px);
+  -moz-transform: translateX(600px);
   transform: translateX(600px);
+
+  -webkit-transition: all 0.7s ease-in-out 0.3s;
+  -moz-transition: all 0.7s ease-in-out 0.3s;
   transition: all 0.7s ease-in-out 0.3s;
 }
 
@@ -373,6 +483,9 @@ img.bg {
   nav{
     width: 0px;
     opacity: 0.9;
+
+    -webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
     transition: all 1s ease-in-out;
   }
   /* Positioning all the sections in the one-column grid */
@@ -394,6 +507,8 @@ img.bg {
     left: 2vw;
     /* Making them stay on top of the navbar when this one is visible (navbar has an index of 1) */
     z-index: 2;
+    -webkit-transition: 1s ease-in-out;
+    -moz-transition: 1s ease-in-out;
     transition: 1s ease-in-out;
   }
 
@@ -410,15 +525,40 @@ img.bg {
   }
 }
 
-  /* Let the portfolio section have an auto height so it can accommodate all the cards without breaking the layout */
-@media screen and (max-width:1271px) {
-  #portfolio{
-    height: auto;
-    padding: 2vh;
-  }
-}
-
 @media screen and (max-width: 813px) {
+  /* Making the home section as tall as teh content inside it and give it some padding */
+  #home{
+    height: auto;
+    padding-bottom: 10vh;
+  }
+
+  /* Making the home grid have just one column */
+  #home #home-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas: "image"
+                         "header"
+                         "content";
+    grid-gap: 1%;
+  }
+
+  /* Assigning a new grid area to the image and moving it a bit down when in mobile screens*/
+  #home img{
+    grid-area: image;
+
+    -webkit-transform: translateY(10%);
+    -moz-transform: translateY(10%);
+    transform: translateY(10%);
+  }
+
+  /* Relocating the header and paragraph */
+  #home h1{
+    grid-area: header;
+  }
+  #home p{
+    margin-top: -40px;
+    grid-area: content;
+  }
+
   /* Let the portfolio section have an auto height so it can accommodate all the cards without breaking the layout */
   #portfolio {
     height: auto;
@@ -435,6 +575,8 @@ img.bg {
 
   /* When Javascript gives the slides the class of current make them slide from the bottom */
   .slide.current .overlay {
+    -webkit-transform: translateY(-300px);
+    -moz-transform: translateY(-300px);
     transform: translateY(-300px);
   }
 
@@ -443,16 +585,20 @@ img.bg {
     position: absolute;
     top: 65vh;
     left: 45%;
+    -webkit-transition: 0.3s ease-in-out;
+    -moz-transition: 0.3s ease-in-out;
     transition: 0.3s ease-in-out;
   }
 }
 
-/* On resizing, when reaching half the width of the images, make sure the images are centered */
+/* On resizing, when reaching half the width of the images in the caroussel, make sure the images are centered */
 @media screen and (max-width: 1004px) {
   img.bg {
     left: 50%;
     /* 50% of the image width + an offset to compensate for the sidebar */
     margin-left: calc(-502px + 40%);
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
     transition: 0.3s;
   }
 }
