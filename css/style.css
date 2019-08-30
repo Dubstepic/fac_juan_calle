@@ -517,9 +517,6 @@ main {
 }
 
 /* GALLERY */
-#gallery {
-}
-
 /* Image Caroussel */
 .caroussel {
   /* Position it relative to the gallery section */
@@ -718,7 +715,9 @@ img.bg {
     height: auto;
     padding: 2vh;
   }
-
+  .slide .overlay-big {
+    width: 80%;
+  }
   /* Positioning the caroussel overlays below the page so they slide up from the bottom */
   .slide .overlay {
     bottom: -300px;
