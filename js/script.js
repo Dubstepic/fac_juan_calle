@@ -8,7 +8,7 @@ const links = document.querySelectorAll('nav ul.navBar li a');
 // Function to highlight the menu item corresponding to the section displayed in the viewport
 const highlightLinks = () => {
   // Store the current position relative to the top of the document
-  let fromTop = window.scrollY;
+  let fromTop = window.scrollY + 2;
 
   // For each menu item in the array...
   links.forEach(link => {
@@ -105,11 +105,11 @@ const nextSlide = () => {
 
   // Check for next slide and make sure that is not the div with class buttons
   if (current.nextElementSibling && !current.nextElementSibling.classList.contains('buttons')) {
-    // Add current class to next next sibling
+    // Add current class to next sibling
     current.nextElementSibling.classList.add('current');
   } else {
-    // Add current to the initial slide
-    slides[0].classList.add('current');
+    // Add current to the slide following the intro slide. So the intro slide only appears once;
+    slides[1].classList.add('current');
   }
 
   current.classList.remove('current');
@@ -124,8 +124,13 @@ const previousSlide = () => {
 
   // Check for previous slide
   if (current.previousElementSibling) {
-    // Add current class to previous next sibling
+    // Add current class to previous sibling
     current.previousElementSibling.classList.add('current');
+
+    // Make sure I don't repeat the intro slide by skipping it
+    if (current.previousElementSibling == slides[0]) {
+      slides[slides.length - 1].classList.add('current');
+    }
   } else {
     // Add current to the last slide
     slides[slides.length - 1].classList.add('current');

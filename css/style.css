@@ -335,7 +335,7 @@ main {
   grid-area: p3;
 }
 
-/* WHY FOUNDERS AND CODERS */
+/* WHY FOUNDERS AND CODERS & WHAT I"VE LEARNED */
 #whyFC, #whatIlearned{
   display: flex;
   align-items: flex-start;
@@ -352,7 +352,7 @@ main {
   grid-gap: 5rem;
 }
 
-#whyFC h1 , #whatIlearned h1{
+#whyFC h1 , #whatIlearned h1, #portfolio h1 {
   display: inline;
   justify-self: center;
 }
@@ -366,20 +366,31 @@ main {
   line-height: 2rem;
   justify: center;
 }
-
-
-/* WHAT I'VE LEARNED */
 #whatIlearned {
   background: url('../assets/images/bgShapes3.png') no-repeat center center/cover;
 }
 #whatIlearned h1:after{
   content: "What have I learned?";
 }
+
+
 /* PORTFOLIO */
 #portfolio {
   background: url('../assets/images/bgShapes2.png') no-repeat center center/cover;
   height: 100vh;
   padding-bottom: 5vh;
+}
+#portfolio .title{
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+#portfolio h1{
+  margin-top:0;
+  margin-bottom: 5vh;
+}
+#portfolio h1:after{
+  content: "Portfolio";
 }
 
 /* Make the div containing the cards centered and create a responsive grid*/
@@ -507,7 +518,6 @@ main {
 
 /* GALLERY */
 #gallery {
-  background-color: #A7DB66;
 }
 
 /* Image Caroussel */
@@ -539,12 +549,20 @@ main {
   -moz-transition: opacity 0.4s ease-in-out;
   transition: opacity 0.4s ease-in-out;
 }
+/* Blurring the first image so the overlay can sit nicely on top */
+img.blurred{
+  filter: blur(1rem);
+}
 
 /* Javascript will manage this class to transition between slides */
 .slide.current {
   opacity: 1;
 }
-
+.slide.current.flex{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 /* Styles the images to be full screen and responsive */
 img.bg {
   /* Set rules to fill background */
@@ -556,6 +574,29 @@ img.bg {
   /* Set up positioning */
   top: 0;
   left: 0;
+}
+/* Styling the overlay of the introductory slide */
+.slide .overlay-big {
+  position: absolute;
+  background-color: var(--caption-background);
+  color: var(--dark-grey);
+  width: 50vw;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem;
+  text-align: center;
+}
+.slide .overlay-big h1:after{
+  content:"Gallery"
+}
+.slide .overlay-big p {
+  color: var(--dark-grey);
+  font-size: 1.6rem;
+  line-height: 2rem;
+  margin-bottom: 2vh;
 }
 
 /* Styling the overlays containing the info of each image */
