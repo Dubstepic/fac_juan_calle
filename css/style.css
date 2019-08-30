@@ -498,22 +498,22 @@ main {
 
 /* Giving each back side of the cards a responsive background image */
 .front#one{
-  background: url('../assets/images/portfolio1.png') no-repeat center center/cover;
+  background: url('../assets/images/portfolio1.jpg') no-repeat center center/cover;
 }
 .front#two{
   background: url('../assets/images/portfolio2.jpg') no-repeat center center/cover;
 }
 .front#three{
-  background: url('../assets/images/portfolio3.png') no-repeat center center/cover;
+  background: url('../assets/images/portfolio3.jpg') no-repeat center center/cover;
 }
 .front#four{
-  background: url('../assets/images/portfolio4.png') no-repeat center center/cover;
+  background: url('../assets/images/portfolio4.jpg') no-repeat center center/cover;
 }
 .front#five{
-  background: url('../assets/images/portfolio5.png') no-repeat center center/cover;
+  background: url('../assets/images/portfolio5.jpg') no-repeat center center/cover;
 }
 .front#six{
-  background: url('../assets/images/portfolio6.png') no-repeat center center/cover;
+  background: url('../assets/images/portfolio6.jpg') no-repeat center center/cover;
 }
 
 /* GALLERY */
