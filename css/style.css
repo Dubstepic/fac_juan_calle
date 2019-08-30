@@ -695,7 +695,7 @@ img.bg {
     transform: translateY(10%);
   }
 
-  #home p{
+  #home p, #whyFC p, #whatIlearned p{
     margin-top: -40px;
   }
   /* Making the aboutMe grid have just one column and rearrange the content */
