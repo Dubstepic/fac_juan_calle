@@ -736,7 +736,7 @@ img.bg {
   /* Reposition the play and pause buttons so they don't interfere with the overlay */
   .buttons button#play, .buttons button#pause {
     position: absolute;
-    top: 65vh;
+    top: 78vh;
     left: 45%;
     -webkit-transition: 0.3s ease-in-out;
     -moz-transition: 0.3s ease-in-out;
